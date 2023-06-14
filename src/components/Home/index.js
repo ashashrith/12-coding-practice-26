@@ -35,7 +35,6 @@ class Home extends Component {
 
   renderTeamsList = () => {
     const {teamsData} = this.state
-    console.log(teamsData)
 
     return (
       <ul className="teams-list">
