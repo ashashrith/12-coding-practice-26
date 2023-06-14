@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
+
 import Loader from 'react-loader-spinner'
 
 import TeamCard from '../TeamCard'
@@ -35,16 +35,19 @@ class Home extends Component {
 
   renderTeamsList = () => {
     const {teamsData} = this.state
+    console.log(teamsData)
 
-    ;<ul className="teams-list">
-      {teamsData.map(each => (
-        <TeamCard teamDetails={each} key={each.id} />
-      ))}
-    </ul>
+    return (
+      <ul className="teams-list">
+        {teamsData.map(each => (
+          <TeamCard teamDetails={each} key={each.id} />
+        ))}
+      </ul>
+    )
   }
 
   renderLoader = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="Oval" color="#ffffff" height={50} />
     </div>
   )
@@ -53,21 +56,19 @@ class Home extends Component {
     const {isLoading} = this.state
 
     return (
-      <Link to="/">
-        <div className="home-route-container">
-          <div className="teams-list-container">
-            <div className="ipl-dashboard-heading-container">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
-                alt="ipl logo"
-                className="ipl-logo"
-              />
-              <h1 className="ipl-dashboard-heading">IPL Dashboard</h1>
-            </div>
-            {isLoading ? this.renderLoader() : this.renderTeamsList()}
+      <div className="home-route-container">
+        <div className="teams-list-container">
+          <div className="ipl-dashboard-heading-container">
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
+              alt="ipl logo"
+              className="ipl-logo"
+            />
+            <h1 className="ipl-dashboard-heading">IPL Dashboard</h1>
           </div>
+          {isLoading ? this.renderLoader() : this.renderTeamsList()}
         </div>
-      </Link>
+      </div>
     )
   }
 }

@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
+
 import Loader from 'react-loader-spinner'
 
 import LatestMatch from '../LatestMatch'
@@ -115,11 +115,9 @@ class TeamMatches extends Component {
     const className = `team-matches-container ${this.getRouteClassName()}`
 
     return (
-      <Link to="/team-matches">
-        <div className={className}>
-          {isLoading ? this.renderLoader() : this.renderTeamMatches()}
-        </div>
-      </Link>
+      <div className={className}>
+        {isLoading ? this.renderLoader() : this.renderTeamMatches()}
+      </div>
     )
   }
 }
